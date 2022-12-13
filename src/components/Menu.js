@@ -1,26 +1,31 @@
 import React from "react";
 import { Menubar } from 'primereact/menubar';
-
+import { Outlet, Link } from "react-router-dom";
 
 const Menu = () => {
   // Menu Items
 const menuItems = [
-  {
-     label:'Users',
-     icon:'pi pi-fw pi-user',
-     items:[
-        {
-          icon:'pi pi-fw pi-bars',
-          label:'List'
-
-        },
-        {
-           label:'New',
-           icon:'pi pi-fw pi-user-plus',
-
-        }
-     ]
-  },
+   {
+      label:'Dashboard',
+      icon:'pi pi-fw pi-user',
+      command: ()=>{ window.location="/Home"; }
+   },
+   {
+      label:'Users',
+      icon:'pi pi-fw pi-user',
+      items:[
+         {
+             icon:'pi pi-fw pi-bars',
+             label:'List',
+             command: ()=>{ window.location="/Home"; }
+         },
+         {
+            label:'New',
+            icon:'pi pi-fw pi-user-plus',
+ 
+         }
+      ]
+   },
   {
      label:'Events',
      icon:'pi pi-fw pi-calendar',
@@ -74,8 +79,8 @@ const menuItems = [
  }
 ];
   return (
+    <Menubar model={menuItems} />
     
-    <Menubar model={menuItems}/>
   )
 };
 

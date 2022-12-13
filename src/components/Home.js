@@ -1,3 +1,4 @@
+import { Button } from "primereact/button";
 import React from "react";
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
                 Support bigger set of devices/resolutions
                 Implement ordering of items..
             </div>
+            <Button >Logout</Button>
         </div>
     );
 };
