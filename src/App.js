@@ -3,7 +3,8 @@ import {useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Menu from './components/Menu';
-import Home from './components/Home';
+import Dashboard from './components/Dashboard';
+import ListUsers from './components/users/ListUsers';
 import Login from './components/users/Login';
 import NoPage from "./components/NoPage";
 import logo from './logo.svg';
@@ -19,13 +20,13 @@ import { StyleClass } from 'primereact/styleclass';
 
 const App = () => {
    const {user} = useContext(AuthContext) ;
-   const isUserLoggedIn = false;
+   const isUserLoggedIn = true;
    // isUserLoggedIn = true;
-   if (user)
-   {
-      isUserLoggedIn = true;
+  //  if (user)
+  //  {
+  //     isUserLoggedIn = true;
      
-   }
+  //  }
    console.log(AuthContext.__currentValue);
     return (
       <div>
@@ -37,8 +38,9 @@ const App = () => {
             <Menu />
             <Routes>
                 <Route path="/">
-                  <Route index element={<Home />} />
-                  <Route path="Home" element={<Home />} />
+                  <Route index element={<Dashboard />} />
+                  <Route path="dashboard" element={<Dashboard />} />
+                  <Route path="users" element={<ListUsers />} />
                   <Route path="*" element={<NoPage />} />
                 </Route >
             </Routes>

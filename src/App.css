@@ -19,6 +19,12 @@
   font-size: large;
 }
 
+.container {
+  padding: 5px;
+  margin: 10px auto;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

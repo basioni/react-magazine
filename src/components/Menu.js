@@ -7,8 +7,8 @@ const Menu = () => {
 const menuItems = [
    {
       label:'Dashboard',
-      icon:'pi pi-fw pi-user',
-      command: ()=>{ window.location="/Home"; }
+      icon:'pi pi-home',
+      command: ()=>{ window.location="/dashboard"; }
    },
    {
       label:'Users',
@@ -16,11 +16,11 @@ const menuItems = [
       items:[
          {
              icon:'pi pi-fw pi-bars',
-             label:'List',
-             command: ()=>{ window.location="/Home"; }
+             label:'Users List',
+             command: ()=>{ window.location="/users"; }
          },
          {
-            label:'New',
+            label:'Add User',
             icon:'pi pi-fw pi-user-plus',
  
          }
@@ -61,15 +61,6 @@ const menuItems = [
     label:'Account',
     icon:'pi pi-fw pi-user',
     items:[
-     {
-      label:'Login',
-      icon:'pi pi-fw pi-user-plus'
-   },
-   {
-        label:'Register',
-        icon:'pi pi-fw pi-user-plus',
-
-     },
      {
       label:'Logout',
       icon:'pi pi-fw pi-power-off'
