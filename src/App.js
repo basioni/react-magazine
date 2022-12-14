@@ -27,7 +27,7 @@ const App = () => {
   //     isUserLoggedIn = true;
      
   //  }
-   console.log(AuthContext.__currentValue);
+    //console.log(user);
     return (
       <div>
          
@@ -45,7 +45,6 @@ const App = () => {
                 </Route >
             </Routes>
           </BrowserRouter>
-           {user}
          </div>
           ):
          (
