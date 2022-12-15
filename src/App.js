@@ -9,7 +9,8 @@ import Login from './components/users/Login';
 import NoPage from "./components/NoPage";
 import logo from './logo.svg';
 
-import AuthContext from "./components/users/AuthProvider";
+// import AuthContext from "./components/users/AuthProvider";
+import { AuthProvider } from "./components/users/AuthProvider";
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
@@ -18,20 +19,24 @@ import "primeicons/primeicons.css";                                //icons
 import "primeflex/primeflex.css";
 import { StyleClass } from 'primereact/styleclass';
 
-const App = () => {
-   const {user} = useContext(AuthContext) ;
-   const isUserLoggedIn = true;
+// export const UserContext = React.createContext();
+const App = () => { 
+  const [token, setToken] = useState(null);
+   const isUserLoggedIn = false;
    // isUserLoggedIn = true;
-  //  if (user)
-  //  {
-  //     isUserLoggedIn = true;
-     
-  //  }
+   function checkLogin(inputToken){
+    if (inputToken == null){
+    return false;
+    }else{
+    return true;
+    } 
+   }
+
     //console.log(user);
     return (
       <div>
-         
-         { isUserLoggedIn ? 
+         <AuthProvider.Provider value={{token, setToken}} >
+         {checkLogin(token) ? 
          (<div>
            
             <BrowserRouter>
@@ -49,12 +54,13 @@ const App = () => {
           ):
          (
             <div>
-                 {user}
             <Login />
             </div>
          )
-         }        
+         }
+      </AuthProvider.Provider>        
       </div>
+      
     );
   }
 

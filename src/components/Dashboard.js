@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Fieldset } from 'primereact/fieldset';
 import { BreadCrumb } from 'primereact/breadcrumb';
-import { Chart } from 'primereact/chart';
+import { AuthProvider } from './users/AuthProvider';
 
 // Load Dashboard Widgets
 import UsersRegisteredWidget from './widgets/UsersRegisteredWidget';
@@ -12,6 +12,7 @@ import EventsInsightsWidget from './widgets/EventsInsightsWidget';
 import './dashboard.css';
 
 const Dashboard = () => {
+    const {token , setToken} = useContext(AuthProvider);
     // Set BreadCrum options
     const items = [
         { label: 'Dashboard' }
