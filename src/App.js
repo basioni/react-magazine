@@ -22,23 +22,14 @@ import { StyleClass } from 'primereact/styleclass';
 // export const UserContext = React.createContext();
 const App = () => { 
   const [token, setToken] = useState(null);
-   const isUserLoggedIn = false;
-   // isUserLoggedIn = true;
-   function checkLogin(inputToken){
-    if (inputToken == null){
-    return false;
-    }else{
-    return true;
-    } 
-   }
+   
 
     //console.log(user);
     return (
       <div>
          <AuthProvider.Provider value={{token, setToken}} >
-         {checkLogin(token) ? 
+         {token ? 
          (<div>
-           
             <BrowserRouter>
             <Menu />
             <Routes>
@@ -52,9 +43,16 @@ const App = () => {
           </BrowserRouter>
          </div>
           ):
-         (
+         (  
             <div>
-            <Login />
+              <BrowserRouter>
+              <Routes>
+                <Route path="/">
+                  <Route index element={<Login />} />
+                  <Route path="*" element={<Login />} />
+                </Route >
+            </Routes>
+            </BrowserRouter>
             </div>
          )
          }

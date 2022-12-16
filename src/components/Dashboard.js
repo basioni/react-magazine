@@ -12,7 +12,7 @@ import EventsInsightsWidget from './widgets/EventsInsightsWidget';
 import './dashboard.css';
 
 const Dashboard = () => {
-    const {token , setToken} = useContext(AuthProvider);
+    //const {token , setToken} = useContext(AuthProvider);
     // Set BreadCrum options
     const items = [
         { label: 'Dashboard' }
