@@ -52,7 +52,7 @@ const Login = () => {
 
 
   return (
-      <div className="flex flex-column md:flex-row p-jc-center">
+      <div className="flex justify-content-center">
         <Card >
           <h5>Login to your account:</h5>
           <p ref={errorRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>

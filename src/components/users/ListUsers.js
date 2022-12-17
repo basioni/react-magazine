@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { BreadCrumb } from 'primereact/breadcrumb';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import axios from "axios";
 // import { ProductService } from '../api/ProductService';
 
 import './ListUsers.css';
@@ -24,21 +25,24 @@ const ListUsers = () => {
     
     
     const fetchUsers = async() => {
-        const data = await fetch("https://jsonplaceholder.typicode.com/users");
-        const posts = await data.json();
-
-        const readPosts = posts.map(usersFilter);
         
-        setPosts(readPosts);
+        try {
+            const data = await fetch("http://localhost:4000/viewUsers");
+            const posts = await data.json();
+            setPosts(posts.data);
+        } catch (error) {
+            console.log(error)
+        }
+        
+
+        // const readPosts = posts.map(usersFilter);
+        
         //setPosts(posts.concat([{"actions" : "Edit - Delete"}]));
-        console.log(readPosts);
+        // console.log(readPosts);
  
         
     }
    
-    function usersFilter(value, index, array){
-        return value;
-    }
     const [first, setFirst] = useState(1);
 
     return (
@@ -50,7 +54,7 @@ const ListUsers = () => {
             <DataTable value={posts}  
             responsiveLayout= "scroll"
             paginatorTemplate="firstPageLink PrevPageLink NextPageLink CurrentPageReport RowsPerPageDrop"
-            dataKey='user_id' 
+            dataKey='id' 
             paginator 
             emptyMessage= "No Users Found"
             className='datable-responsive'
@@ -58,9 +62,7 @@ const ListUsers = () => {
             rows={12} 
             >
             <Column field="id" header="ID" sortable style={{ width: '5%' }}></Column>
-            <Column field="username" header="Name" sortable  style={{ width: '15%' }}></Column>
-            <Column field="username" header="Username" sortable style={{ width: '15%' }}></Column>
-            <Column field="email" header="Email" sortable style={{ width: '15%' }}></Column>
+            <Column field="name" header="Name" sortable  style={{ width: '15%' }}></Column>
             </DataTable>
             </div>
         </div>
