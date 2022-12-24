@@ -9,13 +9,11 @@ import { Checkbox } from 'primereact/checkbox';
 import { Dialog } from 'primereact/dialog';
 import { Divider } from 'primereact/divider';
 import { classNames } from 'primereact/utils';
-// import './AddUser.css';
+import './AddUser.css';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-const Login = () => {
-  const [user , setUser] = useState('');
-  const auth = useAuth();
-
+const AddUser = () => {
+  
+  const [countries, setCountries] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
@@ -26,11 +24,19 @@ const Login = () => {
 
   const formik = useFormik({
       initialValues: {
+          name: '',
           email: '',
-          password: ''
+          password: '',
+          date: null,
+          country: null,
+          accept: false
       },
       validate: (data) => {
           let errors = {};
+
+          if (!data.name) {
+              errors.name = 'Name is required.';
+          }
 
           if (!data.email) {
               errors.email = 'Email is required.';
@@ -43,16 +49,17 @@ const Login = () => {
               errors.password = 'Password is required.';
           }
 
+          if (!data.accept) {
+              errors.accept = 'You need to agree to the terms and conditions.';
+          }
+
           return errors;
       },
       onSubmit: (data) => {
             setFormData(data);
-            console.log(data.email);
-            auth.login(data.email);
             setShowMessage(true);
-            formik.resetForm();
-            navigate('/dashboard');
-          
+            navigate('/');
+          formik.resetForm();
       }
   });
 
@@ -81,7 +88,10 @@ const Login = () => {
           <Dialog visible={showMessage} onHide={() => setShowMessage(false)} position="top" footer={dialogFooter} showHeader={false} breakpoints={{ '960px': '80vw' }} style={{ width: '30vw' }}>
               <div className="flex align-items-center flex-column pt-6 px-3">
                   <i className="pi pi-check-circle" style={{ fontSize: '5rem', color: 'var(--green-500)' }}></i>
-                  <h5>Login Successful!</h5>
+                  <h5>Registration Successful!</h5>
+                  <p style={{ lineHeight: 1.5, textIndent: '1rem' }}>
+                      Your account is registered under name <b>{formData.name}</b> ; it'll be valid next 30 days without activation. Please check <b>{formData.email}</b> for activation instructions.
+                  </p>
               </div>
           </Dialog>
 
@@ -89,6 +99,13 @@ const Login = () => {
               <div className="card">
                   <h3 className="text-center">Add New User</h3>
                   <form onSubmit={formik.handleSubmit} className="p-fluid">
+                      <div className="field">
+                          <span className="p-float-label">
+                              <InputText id="name" name="name" value={formik.values.name} onChange={formik.handleChange} autoFocus className={classNames({ 'p-invalid': isFormFieldValid('name') })} />
+                              <label htmlFor="name" className={classNames({ 'p-error': isFormFieldValid('name') })}>Name*</label>
+                          </span>
+                          {getFormErrorMessage('name')}
+                      </div>
                       <div className="field">
                           <span className="p-float-label p-input-icon-right">
                               <i className="pi pi-envelope" />
@@ -105,8 +122,18 @@ const Login = () => {
                           </span>
                           {getFormErrorMessage('password')}
                       </div>
+                      <div className="field">
+                          <span className="p-float-label">
+                              <Calendar id="date" name="date" value={formik.values.date} onChange={formik.handleChange} dateFormat="dd/mm/yy" mask="99/99/9999" showIcon />
+                              <label htmlFor="date">Birthday</label>
+                          </span>
+                      </div>
+                      <div className="field-checkbox">
+                          <Checkbox inputId="accept" name="accept" checked={formik.values.accept} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('accept') })} />
+                          <label htmlFor="accept" className={classNames({ 'p-error': isFormFieldValid('accept') })}>I agree to the terms and conditions*</label>
+                      </div>
 
-                      <Button type="submit" label="Login" className="mt-2" />
+                      <Button type="submit" label="Submit" className="mt-2" />
                   </form>
               </div>
           </div>
@@ -115,4 +142,4 @@ const Login = () => {
 }
    
 
-export default Login;
+export default AddUser;

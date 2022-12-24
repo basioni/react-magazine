@@ -1,28 +1,34 @@
 import React from "react";
 import { Menubar } from 'primereact/menubar';
-import { Outlet, Link } from "react-router-dom";
+import { Navigate, useNavigate } from 'react-router-dom';
+import { AuthProvider } from "./context/AuthContext";
 
 const Menu = () => {
+   const navigate = useNavigate();
   // Menu Items
 const menuItems = [
    {
       label:'Dashboard',
       icon:'pi pi-home',
-      command: ()=>{ window.location="/dashboard"; }
+      command: ()=>{ navigate('/dashboard'); }
    },
+   {
+     label:'Calendar',
+     icon:'pi pi-fw pi-calendar',
+  },
    {
       label:'Users',
       icon:'pi pi-fw pi-user',
       items:[
          {
              icon:'pi pi-fw pi-bars',
-             label:'Users List',
-             command: ()=>{ window.location="/users"; }
+             label:'View Users',
+             command: ()=>{ navigate('/users'); }
          },
          {
             label:'Add User',
             icon:'pi pi-fw pi-user-plus',
- 
+            command: ()=>{ navigate('/adduser'); }
          }
       ]
    },
@@ -31,47 +37,28 @@ const menuItems = [
      icon:'pi pi-fw pi-calendar',
      items:[
         {
-           label:'Edit',
-           icon:'pi pi-fw pi-pencil',
-           items:[
-              {
-                 label:'Save',
-                 icon:'pi pi-fw pi-calendar-plus'
-              },
-              {
-                 label:'Delete',
-                 icon:'pi pi-fw pi-calendar-minus'
-              },
-
-           ]
+           label:'List Events',
+           icon:'pi pi-fw pi-calendar',
         },
         {
            label:'Archieve',
-           icon:'pi pi-fw pi-calendar-times',
-           menuItems:[
-              {
-                 label:'Remove',
-                 icon:'pi pi-fw pi-calendar-minus'
-              }
-           ]
+           icon:'pi pi-fw pi-calendar-plus',
         }
      ]
-  },
-  {
-    label:'Account',
-    icon:'pi pi-fw pi-user',
-    items:[
-     {
-      label:'Logout',
-      icon:'pi pi-fw pi-power-off'
-
-     }
-    ]
- }
+  }
+];
+const loggedOutMenuItems = [
+   {
+      label:'Login',
+      icon:'pi pi-home',
+      command: ()=>{ navigate('/login'); }
+   }
 ];
   return (
-    <Menubar model={menuItems} />
-    
+   !AuthProvider.useremail ?
+   (<Menubar model={loggedOutMenuItems} />)
+   :
+   (<Menubar model={menuItems} />)
   )
 };
 

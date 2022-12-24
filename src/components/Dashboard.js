@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState , useContext } from 'react';
+
+import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
+import "primereact/resources/primereact.min.css";                  //core css
+import "primeicons/primeicons.css";                                //icons
+
 import { Fieldset } from 'primereact/fieldset';
 import { BreadCrumb } from 'primereact/breadcrumb';
-import { AuthProvider } from './users/AuthProvider';
 
 // Load Dashboard Widgets
 import UsersRegisteredWidget from './widgets/UsersRegisteredWidget';
@@ -12,7 +16,6 @@ import EventsInsightsWidget from './widgets/EventsInsightsWidget';
 import './dashboard.css';
 
 const Dashboard = () => {
-    //const {token , setToken} = useContext(AuthProvider);
     // Set BreadCrum options
     const items = [
         { label: 'Dashboard' }

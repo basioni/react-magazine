@@ -4,7 +4,6 @@ import { BreadCrumb } from 'primereact/breadcrumb';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import axios from "axios";
-// import { ProductService } from '../api/ProductService';
 
 import './ListUsers.css';
 const ListUsers = () => {
