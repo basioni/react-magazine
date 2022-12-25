@@ -13,7 +13,7 @@ import { classNames } from 'primereact/utils';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 const Login = () => {
-  const [user , setUser] = useState('');
+//   const [user , setUser] = useState('');
   const auth = useAuth();
 
   const [showMessage, setShowMessage] = useState(false);
@@ -48,6 +48,7 @@ const Login = () => {
       onSubmit: (data) => {
             setFormData(data);
             console.log(data.email);
+            //setUser(data.email); 
             auth.login(data.email);
             setShowMessage(true);
             formik.resetForm();

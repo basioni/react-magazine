@@ -1,10 +1,11 @@
 import React from "react";
 import { Menubar } from 'primereact/menubar';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
 const Menu = () => {
    const navigate = useNavigate();
+   const auth = useAuth();
   // Menu Items
 const menuItems = [
    {
@@ -55,7 +56,7 @@ const loggedOutMenuItems = [
    }
 ];
   return (
-   !AuthProvider.useremail ?
+   !auth.user ?
    (<Menubar model={loggedOutMenuItems} />)
    :
    (<Menubar model={menuItems} />)

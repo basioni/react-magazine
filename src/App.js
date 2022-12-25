@@ -24,8 +24,11 @@ const App = () => {
 
           <Routes>
             <Route path="/">
+              (!user? 
               <Route index element={<Login />} />
+              :
               <Route index element={<Dashboard />} />
+              );
               <Route path="login" element={<Login />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="users" element={<ListUsers />} />

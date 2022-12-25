@@ -15,8 +15,12 @@ import EventsInsightsWidget from './widgets/EventsInsightsWidget';
 // Load Dashboards CSS
 import './dashboard.css';
 
+// Import Authentication Token
+import { useAuth } from './context/AuthContext';
 const Dashboard = () => {
     // Set BreadCrum options
+    const auth = useAuth()
+
     const items = [
         { label: 'Dashboard' }
     ];
@@ -31,6 +35,9 @@ const Dashboard = () => {
             <BreadCrumb model={items} home={home}/>
             </div>
             <div className="col">
+                <div className="grid">
+                   Token: {auth.user}
+                </div>
                 <div className="grid">
                     <div className="col-4 sm-12">
                         <Fieldset legend="Events Insights">
@@ -47,7 +54,7 @@ const Dashboard = () => {
                         <EventsStatusWidget />
                         </Fieldset>
                     </div>
-                `</div>
+                </div>
 
             </div>
         </div>
