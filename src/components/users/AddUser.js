@@ -58,7 +58,7 @@ const AddUser = () => {
       onSubmit: (data) => {
             setFormData(data);
             setShowMessage(true);
-            navigate('/');
+            navigate('/users');
           formik.resetForm();
       }
   });

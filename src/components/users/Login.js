@@ -47,7 +47,7 @@ const Login = () => {
       },
       onSubmit: (data) => {
             setFormData(data);
-            console.log(data.email);
+            // console.log(data.email);
             //setUser(data.email); 
             auth.login(data.email);
             setShowMessage(true);

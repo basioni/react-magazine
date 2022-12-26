@@ -9,6 +9,7 @@ import "primeflex/primeflex.css";
 import Login from "./components/users/Login";
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
+import TasksCalendar from "./components/calendar/TasksCalendar";
 import ListUsers from './components/users/ListUsers';
 import AddUser from "./components/users/AddUser";
 import NoPage from "./components/NoPage";
@@ -31,6 +32,7 @@ const App = () => {
               );
               <Route path="login" element={<Login />} />
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="calendar" element={<TasksCalendar />} />
               <Route path="users" element={<ListUsers />} />
               <Route path="adduser" element={<AddUser />} />
               <Route path="*" element={<NoPage />} />
