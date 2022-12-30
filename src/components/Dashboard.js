@@ -36,9 +36,6 @@ const Dashboard = () => {
             </div>
             <div className="col">
                 <div className="grid">
-                   Token: {auth.user}
-                </div>
-                <div className="grid">
                     <div className="col-4 sm-12">
                         <Fieldset legend="Events Insights">
                         <EventsInsightsWidget />                  

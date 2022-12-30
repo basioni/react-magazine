@@ -10,8 +10,7 @@ const ListUsers = () => {
 
        
     const breadcrumbsItems = [
-        { label: 'Users' },
-        { label: 'All Users' }
+        { label: 'Users' }
     ];
     
     const home = { icon: 'pi pi-home', url: 'http://localhost:3000' }
@@ -62,6 +61,8 @@ const ListUsers = () => {
             >
             <Column field="id" header="ID" sortable style={{ width: '5%' }}></Column>
             <Column field="name" header="Name" sortable  style={{ width: '15%' }}></Column>
+            <Column field="email" header="Email" sortable  style={{ width: '15%' }}></Column>
+            <Column field="password" header="Password" sortable  style={{ width: '15%' }}></Column>
             </DataTable>
             </div>
         </div>

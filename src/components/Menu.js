@@ -21,13 +21,27 @@ const menuItems = [
      icon:'pi pi-fw pi-calendar',
      command: ()=>{ navigate('/calendar'); }
    },
+  {
+     label:'Tasks',
+     icon:'pi pi-fw pi-calendar',
+     items:[
+        {
+           label:'All Tasks',
+           icon:'pi pi-fw pi-calendar',
+        },
+        {
+           label:'Add New',
+           icon:'pi pi-fw pi-calendar-plus',
+        }
+     ]
+  },
    {
       label:'Users',
-      icon:'pi pi-fw pi-user',
+      icon:'pi pi-fw pi-users',
       items:[
          {
-             icon:'pi pi-fw pi-bars',
-             label:'View Users',
+             icon:'pi pi-fw pi-users',
+             label:'All Users',
              command: ()=>{ navigate('/users'); }
          },
          {
@@ -38,25 +52,8 @@ const menuItems = [
       ]
    },
   {
-     label:'Activities',
-     icon:'pi pi-fw pi-calendar',
-     items:[
-        {
-           label:'List Events',
-           icon:'pi pi-fw pi-calendar',
-        },
-        {
-           label:'Archieve',
-           icon:'pi pi-fw pi-calendar-plus',
-        }
-     ]
-  },
-  {
      label:
-     (<Avatar size="xlarge">
-         <Badge value="4" severity="danger" />
-     </Avatar>)
-      ,
+     (auth.user),
      icon:'pi pi-fw pi-user',
      items:[
         {
@@ -86,9 +83,13 @@ const loggedOutMenuItems = [
 ];
   return (
    !auth.user ?
-   (<Menubar model={loggedOutMenuItems} />)
+   (<Menubar model={loggedOutMenuItems} 
+      end={<div>end</div>}
+   />)
    :
-   (<Menubar model={menuItems} />)
+   (<Menubar model={menuItems }   
+      end={<div>end</div>}
+   />)
   )
 };
 
